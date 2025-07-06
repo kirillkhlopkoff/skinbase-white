@@ -10,6 +10,9 @@ const NavContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   gap: theme.spacing(4),
+  [theme.breakpoints.down('md')]: {
+    display: 'none'
+  }
 }));
 
 const NavItemContainer = styled(Box)(({ theme }) => ({

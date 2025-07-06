@@ -1,12 +1,14 @@
-import { AppBar, Box, Container, InputBase, Toolbar, alpha, styled, IconButton, Menu, MenuItem } from '@mui/material';
+import { AppBar, Box, Container, InputBase, Toolbar, alpha, styled, IconButton, Menu, MenuItem, Divider, Collapse, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import LanguageIcon from '@mui/icons-material/Language';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Navigation from './Navigation';
+import { NAV_ITEMS } from '../../../data/navItems';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -21,6 +23,9 @@ const Search = styled('div')(({ theme }) => ({
     marginLeft: theme.spacing(1),
     width: 'auto',
   },
+  [theme.breakpoints.down('sm')]: {
+    maxWidth: '200px'
+  }
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -49,10 +54,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const MobileMenuItem = styled(MenuItem)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: theme.spacing(1, 2),
+}));
+
+const SubMenuItem = styled(MenuItem)(({ theme }) => ({
+  paddingLeft: theme.spacing(4),
+}));
+
 const Header = () => {
   const [searchValue, setSearchValue] = useState('');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [langAnchorEl, setLangAnchorEl] = useState<null | HTMLElement>(null);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
 
@@ -95,10 +112,19 @@ const Header = () => {
     handleMenuClose();
   };
 
+  const handleCategoryClick = (category: string) => {
+    setExpandedCategory(expandedCategory === category ? null : category);
+  };
+
+  const handleSubItemClick = (item: any) => {
+    navigate(`/items?query=${encodeURIComponent(item.name)}`);
+    handleMenuClose();
+  };
+
   return (
     <AppBar position="static" sx={{ backgroundColor: '#1a1a1a' }}>
       <Container maxWidth="xl">
-        <Toolbar sx={{ justifyContent: 'space-between', gap: 4 }}>
+        <Toolbar sx={{ justifyContent: 'space-between', gap: 2 }}>
           <Box
             sx={{
               display: 'flex',
@@ -120,16 +146,16 @@ const Header = () => {
                 color: '#fff',
                 textTransform: 'uppercase',
                 letterSpacing: 1,
+                display: { xs: 'none', md: 'block' }
               }}
             >
               DOMAIN.COM
             </Box>
           </Box>
 
-
           <Navigation />
 
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -154,8 +180,19 @@ const Header = () => {
               size="large"
               color="inherit"
               onClick={handleLangMenuOpen}
+              sx={{ display: { xs: 'none', md: 'flex' } }}
             >
               <LanguageIcon />
+            </IconButton>
+
+            <IconButton
+              size="large"
+              edge="end"
+              color="inherit"
+              aria-label="menu"
+              onClick={handleMenuOpen}
+            >
+              <MenuIcon />
             </IconButton>
 
             <Menu
@@ -179,16 +216,6 @@ const Header = () => {
               </MenuItem>
             </Menu>
 
-            <IconButton
-              size="large"
-              edge="end"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleMenuOpen}
-            >
-              <MenuIcon />
-            </IconButton>
-
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
@@ -201,7 +228,54 @@ const Header = () => {
                 vertical: 'top',
                 horizontal: 'right',
               }}
+              sx={{
+                '& .MuiPaper-root': {
+                  width: { xs: '280px', md: 'auto' },
+                  maxWidth: '100vw',
+                  overflowX: 'hidden'
+                }
+              }}
             >
+              {/* Мобильная навигация */}
+              <Box sx={{ display: { md: 'none' } }}>
+                {Object.entries(NAV_ITEMS).map(([category, { items }]) => (
+                  <Box key={category}>
+                    <MobileMenuItem onClick={() => handleCategoryClick(category)}>
+                      <Typography>{t(`navigation.categories.${category}`)}</Typography>
+                      <KeyboardArrowDownIcon 
+                        sx={{ 
+                          transform: expandedCategory === category ? 'rotate(180deg)' : 'none',
+                          transition: '0.2s'
+                        }} 
+                      />
+                    </MobileMenuItem>
+                    <Collapse in={expandedCategory === category}>
+                      <Box sx={{ bgcolor: 'rgba(0, 0, 0, 0.1)' }}>
+                        {items.map((item) => (
+                          <SubMenuItem 
+                            key={item.id}
+                            onClick={() => handleSubItemClick(item)}
+                          >
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                              <Box
+                                component="img"
+                                src={`/src/assets/img/types/${item.id}.${item.ext}`}
+                                sx={{ width: 24, height: 24, objectFit: 'contain' }}
+                                alt={item.name}
+                              />
+                              <Typography variant="body2">
+                                {t(item.displayName)}
+                              </Typography>
+                            </Box>
+                          </SubMenuItem>
+                        ))}
+                      </Box>
+                    </Collapse>
+                  </Box>
+                ))}
+                <Divider sx={{ my: 1 }} />
+              </Box>
+
               <MenuItem onClick={() => handleMenuItemClick('/')}>
                 {t('header.menu.home')}
               </MenuItem>
@@ -214,6 +288,17 @@ const Header = () => {
               <MenuItem onClick={() => handleMenuItemClick('/cookie')}>
                 {t('header.menu.cookie')}
               </MenuItem>
+
+              {/* Языки для мобильной версии */}
+              <Box sx={{ display: { md: 'none' } }}>
+                <Divider sx={{ my: 1 }} />
+                <MenuItem onClick={() => handleLanguageChange('ru')} selected={i18n.language === 'ru'}>
+                  Русский
+                </MenuItem>
+                <MenuItem onClick={() => handleLanguageChange('en')} selected={i18n.language === 'en'}>
+                  English
+                </MenuItem>
+              </Box>
             </Menu>
           </Box>
         </Toolbar>

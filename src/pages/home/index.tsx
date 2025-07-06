@@ -54,14 +54,14 @@ const WeaponSection = ({ title, icon, weapons }: { title: string, icon: string, 
   return (
     <Box sx={{ mt: 8 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
-        <Box component="img" src={icon} alt={title} sx={{ width: 80, height: 80, mr: 2 }} />
-        <Typography variant="h4" component="h2" color="white">
+        <Box component="img" src={icon} alt={title} sx={{ width: { xs: 60, md: 80 }, height: { xs: 60, md: 80 }, mr: 2 }} />
+        <Typography variant="h4" component="h2" color="white" sx={{ fontSize: { xs: '1.5rem', md: '2.125rem' } }}>
           {t(`navigation.categories.${title.toLowerCase()}`)}
         </Typography>
       </Box>
-      <Grid container spacing={4}>
+      <Grid container spacing={{ xs: 2, md: 4 }}>
         {weapons.map((weapon, index) => (
-          <Grid size={{ xs: 12, sm: 6, md: 2.4 }} key={index}>
+          <Grid size={{ xs: 6, sm: 4, md: 2.4 }} key={index}>
             <WeaponCard {...weapon} />
           </Grid>
         ))}
@@ -118,8 +118,8 @@ const Home = () => {
       {/* Hero Section */}
       <Box sx={{ 
         position: 'relative', 
-        height: '600px',
-        backgroundImage: 'url(/src/assets/img/logoknives.png)',
+        height: { xs: '400px', md: '600px' },
+        backgroundImage: { xs: 'none', md: 'url(/src/assets/img/logoknives.png)' },
         backgroundSize: '40%',
         backgroundPosition: 'right center',
         backgroundRepeat: 'no-repeat',
@@ -127,14 +127,14 @@ const Home = () => {
         alignItems: 'center',
       }}>
         <Container maxWidth="xl">
-          <Box sx={{ color: 'white', maxWidth: 600 }}>
+          <Box sx={{ color: 'white', maxWidth: 600, textAlign: { xs: 'center', md: 'left' } }}>
             <Typography variant="h2" component="h1" gutterBottom>
               {t('home.hero.title')}
             </Typography>
             <Typography variant="h5" gutterBottom>
               {t('home.hero.subtitle')}
             </Typography>
-            <Box sx={{ display: 'flex', gap: 4, mt: 4 }}>
+            <Box sx={{ display: 'flex', gap: 4, mt: 4, justifyContent: { xs: 'center', md: 'flex-start' } }}>
               <Box>
                 <Typography variant="h4" component="div">1732</Typography>
                 <Typography>{t('home.hero.stats.variations')}</Typography>
