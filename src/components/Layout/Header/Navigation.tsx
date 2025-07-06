@@ -88,7 +88,7 @@ const Navigation = () => {
 
   return (
     <NavContainer>
-      {Object.entries(NAV_ITEMS).map(([category, { name, items }]) => (
+      {Object.entries(NAV_ITEMS).map(([category, { items }]) => (
         <NavItemContainer key={category}>
           <Box
             onClick={() => handleCategoryClick(category)}

@@ -73,13 +73,6 @@ const WeaponSection = ({ title, icon, weapons }: { title: string, icon: string, 
 const Home = () => {
   const { t } = useTranslation();
 
-  const collections = [
-    { image: '/src/assets/img/anubis.webp', name: 'The Anubis Collection' },
-    { image: '/src/assets/img/train.webp', name: 'Train 2021 Collection' },
-    { image: '/src/assets/img/mirage.webp', name: 'Mirage 2021 Collection' },
-    { image: '/src/assets/img/dust2.webp', name: 'Dust II 2021 Collection' },
-  ];
-
   const knives = [
     { image: '/src/assets/img/karambit.webp', name: '★ Karambit', variations: t('home.variations', { count: 35 }) },
     { image: '/src/assets/img/m9.webp', name: '★ M9 Bayonet', variations: t('home.variations', { count: 35 }) },

@@ -99,15 +99,36 @@ const Header = () => {
     <AppBar position="static" sx={{ backgroundColor: '#1a1a1a' }}>
       <Container maxWidth="xl">
         <Toolbar sx={{ justifyContent: 'space-between', gap: 4 }}>
-          <Box 
-            component="img" 
-            src="/src/assets/img/logoicon.png" 
-            sx={{ height: 40, cursor: 'pointer' }}
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              cursor: 'pointer',
+            }}
             onClick={() => navigate('/')}
-          />
-          
+          >
+            <Box
+              component="img"
+              src="/src/assets/img/logoicon.png"
+              sx={{ height: 40 }}
+            />
+            <Box
+              component="span"
+              sx={{
+                fontWeight: 600,
+                color: '#fff',
+                textTransform: 'uppercase',
+                letterSpacing: 1,
+              }}
+            >
+              DOMAIN.COM
+            </Box>
+          </Box>
+
+
           <Navigation />
-          
+
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Search>
               <SearchIconWrapper>
@@ -167,7 +188,7 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            
+
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
