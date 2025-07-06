@@ -3,6 +3,7 @@ import { NAV_ITEMS } from '../../../data/navItems';
 import type { NavItem } from '../../../data/navItems';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const NavContainer = styled(Box)(({ theme }) => ({
@@ -58,6 +59,7 @@ const WeaponLink = styled(Box)(({ theme }) => ({
 const Navigation = () => {
   const navigate = useNavigate();
   const [openCategory, setOpenCategory] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const handleCategoryClick = (category: string) => {
     setOpenCategory(openCategory === category ? null : category);
@@ -71,6 +73,17 @@ const Navigation = () => {
     e.stopPropagation();
     navigate(`/items?query=${encodeURIComponent(item.name)}`);
     setOpenCategory(null);
+  };
+
+  const getCategoryName = (category: string) => {
+    const categoryMap: { [key: string]: string } = {
+      knives: 'navigation.categories.knives',
+      rifles: 'navigation.categories.rifles',
+      pistols: 'navigation.categories.pistols',
+      smg: 'navigation.categories.smg',
+      heavy: 'navigation.categories.heavy'
+    };
+    return t(categoryMap[category] || category);
   };
 
   return (
@@ -91,7 +104,7 @@ const Navigation = () => {
                 transition: '0.2s',
               }}
             >
-              {name}
+              {getCategoryName(category)}
             </Typography>
             <KeyboardArrowDownIcon
               sx={{
@@ -109,7 +122,7 @@ const Navigation = () => {
                   onClick={(e) => handleWeaponClick(e, item)}
                 >
                   <img
-                    src={`/src/assets/img/types/${item.name}.${item.ext}`}
+                    src={`/src/assets/img/types/${item.id}.${item.ext}`}
                     alt={item.displayName}
                   />
                   <Typography variant="body2">{item.displayName}</Typography>

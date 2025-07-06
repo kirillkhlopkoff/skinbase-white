@@ -12,31 +12,31 @@ export interface NavCategory {
 }
 
 export const NAV_ITEMS: Record<string, NavCategory> = {
-  'ножи': {
+  'knives': {
     name: 'НОЖИ',
     items: [
-      { id: 'karambit', name: 'karambit', displayName: '★ Керамбит', ext: 'webp', price: 1299.99 },
-      { id: 'm9-bayonet', name: 'm9 bayonet', displayName: '★ Штык-нож M9', ext: 'webp', price: 899.99 },
-      { id: 'butterfly-knife', name: 'butterfly knife', displayName: '★ Нож-бабочка', ext: 'webp', price: 1499.99 },
-      { id: 'talon-knife', name: 'talon knife', displayName: '★ Коготь', ext: 'webp', price: 699.99 },
-      { id: 'skeleton-knife', name: 'skeleton knife', displayName: '★ Скелетный Нож', ext: 'webp', price: 799.99 },
-      { id: 'classic-knife', name: 'classic knife', displayName: '★ Классический Нож', ext: 'webp', price: 599.99 },
-      { id: 'bayonet', name: 'bayonet', displayName: '★ Штык-нож', ext: 'webp', price: 699.99 },
-      { id: 'stiletto-knife', name: 'stiletto knife', displayName: '★ Стиллет', ext: 'webp', price: 649.99 },
-      { id: 'ursus-knife', name: 'ursus knife', displayName: '★ Медвежий нож', ext: 'webp', price: 599.99 },
-      { id: 'paracord-knife', name: 'paracord knife', displayName: '★ Паракорд-нож', ext: 'webp', price: 549.99 },
-      { id: 'nomad-knife', name: 'nomad knife', displayName: '★ Нож «Бродяга»', ext: 'webp', price: 499.99 },
-      { id: 'survival-knife', name: 'survival knife', displayName: '★ Нож выживания', ext: 'webp', price: 549.99 },
-      { id: 'huntsman-knife', name: 'huntsman knife', displayName: '★ Охотничий нож', ext: 'webp', price: 599.99 },
-      { id: 'flip-knife', name: 'flip knife', displayName: '★ Складной нож', ext: 'webp', price: 649.99 },
-      { id: 'bowie-knife', name: 'bowie knife', displayName: '★ Нож Боуи', ext: 'webp', price: 599.99 },
-      { id: 'falchion-knife', name: 'falchion knife', displayName: '★ Фальшион', ext: 'webp', price: 549.99 },
-      { id: 'gut-knife', name: 'gut knife', displayName: '★ Нож с лезвием-крюком', ext: 'webp', price: 499.99 },
-      { id: 'navaja-knife', name: 'navaja knife', displayName: '★ Наваха', ext: 'webp', price: 449.99 },
-      { id: 'shadow-daggers', name: 'shadow daggers', displayName: '★ Тычковые ножи', ext: 'webp', price: 499.99 },
+      { id: 'karambit', name: 'karambit', displayName: 'home.categories.knives.karambit', ext: 'webp', price: 1299.99 },
+      { id: 'm9-bayonet', name: 'm9 bayonet', displayName: 'home.categories.knives.m9', ext: 'webp', price: 899.99 },
+      { id: 'butterfly-knife', name: 'butterfly knife', displayName: 'home.categories.knives.butterfly', ext: 'webp', price: 1499.99 },
+      { id: 'talon-knife', name: 'talon knife', displayName: 'home.categories.knives.talon', ext: 'webp', price: 699.99 },
+      { id: 'skeleton-knife', name: 'skeleton knife', displayName: 'home.categories.knives.skeleton', ext: 'webp', price: 799.99 },
+      { id: 'classic-knife', name: 'classic knife', displayName: 'home.categories.knives.classic', ext: 'webp', price: 599.99 },
+      { id: 'bayonet', name: 'bayonet', displayName: 'home.categories.knives.bayonet', ext: 'webp', price: 699.99 },
+      { id: 'stiletto-knife', name: 'stiletto knife', displayName: 'home.categories.knives.stiletto', ext: 'webp', price: 649.99 },
+      { id: 'ursus-knife', name: 'ursus knife', displayName: 'home.categories.knives.ursus', ext: 'webp', price: 599.99 },
+      { id: 'paracord-knife', name: 'paracord knife', displayName: 'home.categories.knives.paracord', ext: 'webp', price: 549.99 },
+      { id: 'nomad-knife', name: 'nomad knife', displayName: 'home.categories.knives.nomad', ext: 'webp', price: 499.99 },
+      { id: 'survival-knife', name: 'survival knife', displayName: 'home.categories.knives.survival', ext: 'webp', price: 549.99 },
+      { id: 'huntsman-knife', name: 'huntsman knife', displayName: 'home.categories.knives.huntsman', ext: 'webp', price: 599.99 },
+      { id: 'flip-knife', name: 'flip knife', displayName: 'home.categories.knives.flip', ext: 'webp', price: 649.99 },
+      { id: 'bowie-knife', name: 'bowie knife', displayName: 'home.categories.knives.bowie', ext: 'webp', price: 599.99 },
+      { id: 'falchion-knife', name: 'falchion knife', displayName: 'home.categories.knives.falchion', ext: 'webp', price: 549.99 },
+      { id: 'gut-knife', name: 'gut knife', displayName: 'home.categories.knives.gut', ext: 'webp', price: 499.99 },
+      { id: 'navaja-knife', name: 'navaja knife', displayName: 'home.categories.knives.navaja', ext: 'webp', price: 449.99 },
+      { id: 'shadow-daggers', name: 'shadow daggers', displayName: 'home.categories.knives.shadow', ext: 'webp', price: 499.99 },
     ],
   },
-  'пистолеты': {
+  'pistols': {
     name: 'ПИСТОЛЕТЫ',
     items: [
       { id: 'usp-s', name: 'usp-s', displayName: 'USP-S', ext: 'webp', price: 149.99 },
@@ -51,7 +51,7 @@ export const NAV_ITEMS: Record<string, NavCategory> = {
       { id: 'dual-berettas', name: 'dual-berettas', displayName: 'Dual Berettas', ext: 'webp', price: 59.99 },
     ],
   },
-  'пп': {
+  'smg': {
     name: 'ПП',
     items: [
       { id: 'p90', name: 'p90', displayName: 'P90', ext: 'webp', price: 249.99 },
@@ -63,7 +63,7 @@ export const NAV_ITEMS: Record<string, NavCategory> = {
       { id: 'pp-bizon', name: 'pp-bizon', displayName: 'PP-Bizon', ext: 'webp', price: 119.99 },
     ],
   },
-  'винтовки': {
+  'rifles': {
     name: 'ВИНТОВКИ',
     items: [
       { id: 'ak-47', name: 'ak-47', displayName: 'AK-47', ext: 'webp', price: 499.99 },
@@ -79,7 +79,7 @@ export const NAV_ITEMS: Record<string, NavCategory> = {
       { id: 'g3sg1', name: 'g3sg1', displayName: 'G3SG1', ext: 'webp', price: 339.99 },
     ],
   },
-  'тяжелое': {
+  'heavy': {
     name: 'ТЯЖЕЛОЕ',
     items: [
       { id: 'sawed-off', name: 'sawed-off', displayName: 'Sawed-Off', ext: 'webp', price: 149.99 },
@@ -90,15 +90,14 @@ export const NAV_ITEMS: Record<string, NavCategory> = {
       { id: 'm249', name: 'm249', displayName: 'M249', ext: 'webp', price: 189.99 },
     ],
   },
-  'другое': {
+  'other': {
     name: 'ДРУГОЕ',
     items: [
-      { id: 'agent', name: 'agent', displayName: 'Агенты', ext: 'png', price: 299.99 },
-      { id: 'patch', name: 'patch', displayName: 'Нашивки', ext: 'png', price: 19.99 },
-      { id: 'graffiti', name: 'graffiti', displayName: 'Граффити', ext: 'png', price: 9.99 },
-      { id: 'key', name: 'key', displayName: 'Ключи', ext: 'png', price: 2.49 },
-      { id: 'music-kit', name: 'music kit', displayName: 'Музыка', ext: 'png', price: 29.99 },
-      { id: 'sticker', name: 'sticker', displayName: 'Стикеры', ext: 'png', price: 14.99 },
+      { id: 'agent', name: 'agent', displayName: 'home.categories.other.agents', ext: 'png', price: 299.99 },
+      { id: 'patch', name: 'patch', displayName: 'home.categories.other.patches', ext: 'png', price: 19.99 },
+      { id: 'graffiti', name: 'graffiti', displayName: 'home.categories.other.graffiti', ext: 'png', price: 9.99 },
+      { id: 'key', name: 'key', displayName: 'home.categories.other.keys', ext: 'png', price: 2.49 },
+      { id: 'sticker', name: 'sticker', displayName: 'home.categories.other.stickers', ext: 'png', price: 14.99 },
     ],
   },
 }; 

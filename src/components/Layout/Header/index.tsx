@@ -1,8 +1,11 @@
-import { AppBar, Box, Container, InputBase, Toolbar, alpha, styled } from '@mui/material';
+import { AppBar, Box, Container, InputBase, Toolbar, alpha, styled, IconButton, Menu, MenuItem } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
+import LanguageIcon from '@mui/icons-material/Language';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Navigation from './Navigation';
 
 const Search = styled('div')(({ theme }) => ({
@@ -48,7 +51,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState('');
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [langAnchorEl, setLangAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchValue.trim()) {
@@ -63,38 +69,132 @@ const Header = () => {
     }
   };
 
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLangMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setLangAnchorEl(event.currentTarget);
+  };
+
+  const handleLangMenuClose = () => {
+    setLangAnchorEl(null);
+  };
+
+  const handleLanguageChange = (lang: string) => {
+    i18n.changeLanguage(lang);
+    handleLangMenuClose();
+  };
+
+  const handleMenuItemClick = (path: string) => {
+    navigate(path);
+    handleMenuClose();
+  };
+
   return (
     <AppBar position="static" sx={{ backgroundColor: '#1a1a1a' }}>
       <Container maxWidth="xl">
         <Toolbar sx={{ justifyContent: 'space-between', gap: 4 }}>
           <Box 
             component="img" 
-            src="/src/assets/img/logo.png" 
+            src="/src/assets/img/logoicon.png" 
             sx={{ height: 40, cursor: 'pointer' }}
             onClick={() => navigate('/')}
           />
           
           <Navigation />
           
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Поиск.."
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onKeyPress={handleSearch}
-              endAdornment={
-                searchValue && (
-                  <CloseIcon
-                    sx={{ cursor: 'pointer', mr: 1 }}
-                    onClick={handleClear}
-                  />
-                )
-              }
-            />
-          </Search>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder={t('header.search')}
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                onKeyPress={handleSearch}
+                endAdornment={
+                  searchValue && (
+                    <CloseIcon
+                      sx={{ cursor: 'pointer', mr: 1 }}
+                      onClick={handleClear}
+                    />
+                  )
+                }
+              />
+            </Search>
+
+            <IconButton
+              size="large"
+              color="inherit"
+              onClick={handleLangMenuOpen}
+            >
+              <LanguageIcon />
+            </IconButton>
+
+            <Menu
+              anchorEl={langAnchorEl}
+              open={Boolean(langAnchorEl)}
+              onClose={handleLangMenuClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <MenuItem onClick={() => handleLanguageChange('ru')} selected={i18n.language === 'ru'}>
+                Русский
+              </MenuItem>
+              <MenuItem onClick={() => handleLanguageChange('en')} selected={i18n.language === 'en'}>
+                English
+              </MenuItem>
+            </Menu>
+
+            <IconButton
+              size="large"
+              edge="end"
+              color="inherit"
+              aria-label="menu"
+              onClick={handleMenuOpen}
+            >
+              <MenuIcon />
+            </IconButton>
+            
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <MenuItem onClick={() => handleMenuItemClick('/')}>
+                {t('header.menu.home')}
+              </MenuItem>
+              <MenuItem onClick={() => handleMenuItemClick('/privacy')}>
+                {t('header.menu.privacy')}
+              </MenuItem>
+              <MenuItem onClick={() => handleMenuItemClick('/terms')}>
+                {t('header.menu.terms')}
+              </MenuItem>
+              <MenuItem onClick={() => handleMenuItemClick('/cookie')}>
+                {t('header.menu.cookie')}
+              </MenuItem>
+            </Menu>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

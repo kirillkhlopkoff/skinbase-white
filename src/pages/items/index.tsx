@@ -23,6 +23,11 @@ const Items = () => {
     setItems(filteredItems);
   }, [searchParams]);
 
+  const handleItemClick = (markethashname: string) => {
+    const steamMarketUrl = `https://steamcommunity.com/market/listings/730/${encodeURIComponent(markethashname)}?l=russian`;
+    window.open(steamMarketUrl, '_blank');
+  };
+
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
@@ -33,11 +38,13 @@ const Items = () => {
         {items.map((item) => (
           <Card 
             key={item.itemid}
+            onClick={() => handleItemClick(item.markethashname)}
             sx={{ 
               height: '100%',
               display: 'flex',
               flexDirection: 'column',
               transition: 'transform 0.2s',
+              cursor: 'pointer',
               '&:hover': {
                 transform: 'scale(1.02)'
               }
