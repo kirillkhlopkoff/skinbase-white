@@ -80,7 +80,7 @@ export default {
     decline: 'Decline',
     learnMore: 'Learn More',
     message: 'We use cookies to improve the website. By continuing to use the site, you agree to their use. You can change settings or learn more in the "Learn More" section.',
-    intro: 'At moneycshub.com (hereinafter referred to as "Site"), we strive to ensure transparency regarding the technologies we use to improve your experience. In this section, you will learn what cookies are, how we use them, and how you can manage your settings.',
+    intro: 'At dropcs2data.com (hereinafter referred to as "Site"), we strive to ensure transparency regarding the technologies we use to improve your experience. In this section, you will learn what cookies are, how we use them, and how you can manage your settings.',
     what: {
       title: 'What are cookies?',
       content: 'Cookies are small text files that are stored on your device when you visit a website. They allow us to remember your actions, preferences, and help improve website functionality. Cookies can be used for basic website operation, analytics, personalization, and displaying relevant advertising.'
@@ -156,7 +156,7 @@ export default {
       title: 'Disclaimer',
       general: {
         title: 'General Provisions',
-        content: 'All information on [moneycshub.com] is published for informational purposes only. We strive for accuracy and relevance of data but cannot guarantee their absolute reliability or completeness. Use site materials at your own discretion and risk.'
+        content: 'All information on [dropcs2data.com] is published for informational purposes only. We strive for accuracy and relevance of data but cannot guarantee their absolute reliability or completeness. Use site materials at your own discretion and risk.'
       },
       professional: {
         title: 'Not Professional Advice',
@@ -182,7 +182,7 @@ export default {
   },
   terms: {
     title: 'Terms of Use',
-    intro: 'Before using the moneycshub.com service, please carefully read these terms. By continuing to use the site, you confirm your agreement with them.',
+    intro: 'Before using the dropcs2data.com service, please carefully read these terms. By continuing to use the site, you confirm your agreement with them.',
     general: {
       title: 'General Information',
       items: {
@@ -207,6 +207,6 @@ export default {
         thirdParty: 'We are not responsible for third-party actions or content, or for the consequences of using external services that users may interact with.'
       }
     },
-    conclusion: 'By using moneycshub.com, you confirm your agreement with these terms. If you disagree with any part of these terms — please stop using the service.'
+    conclusion: 'By using dropcs2data.com, you confirm your agreement with these terms. If you disagree with any part of these terms — please stop using the service.'
   }
 };

@@ -149,7 +149,7 @@ const Header = () => {
                 display: { xs: 'none', md: 'block' }
               }}
             >
-              DOMAIN.COM
+              DropCS2Data
             </Box>
           </Box>
 

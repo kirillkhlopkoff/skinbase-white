@@ -20,7 +20,7 @@ const Footer = () => {
           </MuiLink>
         </Box>
         <Typography variant="body2" align="center">
-          © {new Date().getFullYear()} CSKINS. {t('footer.rights')}
+          © {new Date().getFullYear()} dropcs2data.com. {t('footer.rights')}
         </Typography>
       </Container>
     </Box>
